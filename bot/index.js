@@ -56,3 +56,10 @@ client.on("message", message => {
 });
 
 client.login(process.env.TOKEN);
+
+// Prevent the bot from sleeping.
+const http = require('http');
+
+setInterval(() => {
+    http.get("https://zap-remake.herokuapp.com/");
+}, 900000);
