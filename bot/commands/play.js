@@ -29,7 +29,7 @@ function play(member, url, message, client) {
         };
     } else {
         ytdl.getInfo(url, (err, info) => {
-            message.reply("Already playing a song. The song: **" + info.title + "** ``[" + Math.round(info.length_seconds % 60) + ":" + Math.round(info.length_seconds / 60) + "]`` has been placed in the queue.");
+            message.reply("Already playing a song. The song: **" + info.title + "** ``[" + Math.round(info.length_seconds / 60) + ":" + Math.round(info.length_seconds % 60) + "]`` has been placed in the queue.");
         });
         
         queue[message.guild.id].push(url);
