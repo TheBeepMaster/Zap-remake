@@ -5,6 +5,7 @@ const youtubeSearch = require("../util/youtubeSearch.js");
 let queue = [];
 let playing = [];
 let voiceChannels = [];
+let dispatchers = [];
 
 function play(member, url, message, client) {
     if (playing[message.guild.id] == false) {
@@ -13,7 +14,9 @@ function play(member, url, message, client) {
             channel.join().then(connection => {
                 const stream = ytdl(url, {filter: "audioonly"});
                 const dispatcher = connection.playStream(stream, {seek: 0, volume: .5});
-    
+
+                dispatchers[message.guild.id] = dispatcher;
+
                 dispatcher.on("end", () => {
                     end(url, message, member, client);
                 });
@@ -115,6 +118,22 @@ exports.run = function(client, message, args) {
         };
     } else {
         return message.reply("You need to be in a voice channel to play music. Please join one.");
+    };
+};
+
+exports.skip = function(message) {
+    if (dispatchers[message.guild.id]) {
+        dispatchers[message.guild.id].end();
+    };
+};
+
+exports.stop = function(client, message) {
+    const connection = client.voiceConnections.find("id", message.member.voiceChannel.id);
+    if (connection) {
+        const voiceChannel = connection.channel;
+        if (voiceChannel) {
+            voiceChannel.leave();
+        };
     };
 };
 
