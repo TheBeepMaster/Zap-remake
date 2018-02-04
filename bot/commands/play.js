@@ -15,13 +15,13 @@ function play(member, url, message, client) {
                 const dispatcher = connection.playStream(stream, {seek: 0, volume: .5});
     
                 dispatcher.on("end", () => {
-                    end(url, message);
+                    end(url, message, member, client);
                 });
     
                 ytdl.getInfo(url, (err, info) => {
                     playing[message.guild.id] = true;
     
-                    message.channel.send("Now playing: **" + info.title + "**");
+                    message.channel.send("Now playing: **" + info.title + "** ``[" + info.length_seconds % 60 + ":" + info.length_seconds + "]``");
                 });
             });
         } else {
@@ -36,7 +36,7 @@ function play(member, url, message, client) {
     };
 };
 
-function end(url, message) {
+function end(url, message, member, client) {
     message.channel.send("Song has ended.");
 
     console.log(queue[message.guild.id].length);
@@ -44,10 +44,7 @@ function end(url, message) {
     if (queue[message.guild.id].length > 0) {
         message.channel.send("Proceeding queue...");
 
-        play(queue[message.guild.id][0]);
-
-        queue[message.guild.id].slice(0, 1);
-        console.log(queue[message.guild.id]);
+        play(member, queue[message.guild.id][0], message, client);
     } else {
         playing[message.guild.id] = false;
         voiceChannels[message.guild.id] = null;
