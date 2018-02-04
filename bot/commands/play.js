@@ -21,7 +21,7 @@ function play(member, url, message, client) {
                 ytdl.getInfo(url, (err, info) => {
                     playing[message.guild.id] = true;
     
-                    message.channel.send("Now playing: **" + info.title + "** ``[" + info.length_seconds % 60 + ":" + info.length_seconds + "]``");
+                    message.channel.send("Now playing: **" + info.title + "** ``[" + Math.round(info.length_seconds % 60) + ":" + Math.round(info.length_seconds / 60) + "]``");
                 });
             });
         } else {
@@ -29,7 +29,7 @@ function play(member, url, message, client) {
         };
     } else {
         ytdl.getInfo(url, (err, info) => {
-            message.reply("Already playing a song. The song: **" + info.title + "** has been placed in the queue.");
+            message.reply("Already playing a song. The song: **" + info.title + "** ``[" + Math.round(info.length_seconds % 60) + ":" + Math.round(info.length_seconds / 60) + "]`` has been placed in the queue.");
         });
         
         queue[message.guild.id].push(url);
