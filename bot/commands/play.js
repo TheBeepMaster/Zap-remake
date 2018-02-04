@@ -21,7 +21,7 @@ function play(member, url, message, client) {
                 ytdl.getInfo(url, (err, info) => {
                     playing[message.guild.id] = true;
     
-                    message.channel.send("Now playing: **" + info.title + "** ``[" + Math.round(info.length_seconds % 60) + ":" + Math.round(info.length_seconds / 60) + "]``");
+                    message.channel.send("Now playing: **" + info.title + "** ``[" + Math.round(info.length_seconds / 60) + ":" + Math.round(info.length_seconds % 60) + "]``");
                 });
             });
         } else {
