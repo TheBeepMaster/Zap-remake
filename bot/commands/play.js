@@ -44,6 +44,7 @@ function end(url, message, member, client) {
     if (queue[message.guild.id].length > 0) {
         message.channel.send("Proceeding queue...");
 
+        playing[message.guild.id] = false;
         play(member, queue[message.guild.id][0], message, client);
     } else {
         playing[message.guild.id] = false;
