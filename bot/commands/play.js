@@ -36,9 +36,12 @@ function play(member, url, message, client) {
 function end(url, message) {
     message.channel.send("Song has ended.");
 
+    console.log(queue[message.guild.id].length);
+    
     if (queue[message.guild.id].length > 0) {
         play(queue[message.guild.id][0]);
-        delete queue[message.guild.id][0];
+
+        queue[message.guild.id].slice(0, 1);
     } else {
         playing[message.guild.id] = false;
         voiceChannels[message.guild.id] = null;
