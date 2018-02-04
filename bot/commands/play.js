@@ -28,8 +28,11 @@ function play(member, url, message, client) {
             message.reply("Unable to find the current voice channel. Music has been stopped.");
         };
     } else {
-        message.reply("Already playing a song. This song has been added to the queue.");
-        queue.push(url);
+        ytdl.getInfo(url, (err, info) => {
+            message.reply("Already playing a song. The song: **" + info.title + "** has been placed in the queue.");
+        });
+        
+        queue[message.guild.id].push(url);
     };
 };
 
@@ -106,7 +109,7 @@ exports.run = function(client, message, args) {
 
                         urlsFound();
                     };
-                }, 1000);
+                }, 100);
             });
         };
     } else {
