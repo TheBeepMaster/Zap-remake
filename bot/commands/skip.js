@@ -14,7 +14,7 @@ exports.run = function(client, message, args) {
 };
 
 exports.help = {
-    "name": "Stop",
+    "name": "Skip",
     "usage": "",
     "permission-level": 1,
     "catergory": "Music",
