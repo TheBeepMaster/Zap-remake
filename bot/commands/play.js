@@ -67,7 +67,7 @@ exports.run = function(client, message, args) {
         let urls = [];
         let searchingURL = null;
 
-        if (typeof args[0] == "string" && args[0].startsWith("https://www.youtube.com/watch")) {
+        if (typeof args[0] == "string" && args[0].startsWith(" https://www.youtube.com/watch?v=")) {
             urls.push(args[index]);
         } else {
             searchingURL = true;
