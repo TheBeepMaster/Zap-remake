@@ -38,12 +38,13 @@ function play(member, url, message, client) {
 
 function end(url, message, member, client) {
     message.channel.send("Song has ended.");
-    
+
     if (queue[message.guild.id].length > 0) {
         message.channel.send("Proceeding queue...");
 
         playing[message.guild.id] = false;
         play(member, queue[message.guild.id][0], message, client);
+
         queue[message.guild.id].shift();
     } else {
         playing[message.guild.id] = false;
