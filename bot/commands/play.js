@@ -42,6 +42,9 @@ function end(url, message) {
     console.log(queue[message.guild.id].length);
     
     if (queue[message.guild.id].length > 0) {
+        message.channel.send("Proceeding queue...");
+
+        console.log(queue[message.guild.id][0]);
         play(queue[message.guild.id][0]);
 
         queue[message.guild.id].slice(0, 1);
