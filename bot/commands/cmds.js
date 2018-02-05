@@ -6,7 +6,7 @@ exports.run = function(client, message, args) {
     const embed = new discordjs.RichEmbed();
     
     for (let command of commands) {
-        const cmd_module = require(command);
+        const cmd_module = require(`./${command}`);
         const help = cmd_module.help;
 
         embed.addField(help["name"], `Permission level: **${help["permission-level"]}**\nUsage: **${help["usage"]}**\nCategory: **${help["catergory"]}**`);
