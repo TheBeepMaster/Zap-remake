@@ -19,7 +19,7 @@ exports.run = function(client, message, args) {
 
         message.channel.send(clean(evaled), {code: "xl"});
     } catch(err) {
-        message.channel.send("ERROR: ```xl" + err + "\n```", {code: "xl"});
+        message.channel.send("ERROR: ```" + err + "\n```", {code: "xl"});
     }
 };
 
