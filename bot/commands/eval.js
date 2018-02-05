@@ -12,7 +12,7 @@ exports.run = function(client, message, args) {
 
         message.channel.send(clean(evaled) || "undefined", {code: "xl"});
     } catch(err) {
-        message.channel.send("ERROR: " + err, {code: "xl"});
+        message.channel.send(err, {code: "xl"});
     };
 };
 
