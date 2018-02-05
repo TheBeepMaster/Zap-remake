@@ -9,7 +9,11 @@ exports.run = function(client, message, args) {
         const cmd_module = require(`./${command}`);
         const help = cmd_module.help;
 
-        embed.addField(help["name"], `Permission level: **${help["permission-level"]}**\nUsage: **${help["usage"]}**\nCategory: **${help["catergory"]}**`);
+        if (help["usage"].length > 0) {
+            embed.addField(help["name"], `Permission level: **${help["permission-level"]}**\nUsage: **${help["usage"]}**\nCategory: **${help["catergory"]}**`);
+        } else {
+            embed.addField(help["name"], `Permission level: **${help["permission-level"]}**\nUsage: **No usage**\nCategory: **${help["catergory"]}**`);
+        };
     };
 
     message.author.send({embed: embed});
