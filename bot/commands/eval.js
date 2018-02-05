@@ -7,9 +7,6 @@ function clean(text) {
 };
 
 exports.run = function(client, message, args) {
-    if (message.author.id !== "208666671194439681")
-        return message.reply("You are not authorized to execute this command. This command is restricted to the bot creator.");
-
     try {
         let evaled = eval(args.join(" "));
 
