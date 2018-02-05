@@ -13,9 +13,7 @@ exports.run = function(client, message, args) {
     try {
         let evaled = eval(args.join(" "));
 
-        if (evaled !== undefined) {
-            message.channel.send(clean(evaled) || "undefined", {code: "xl"});
-        };
+        message.channel.send(clean(evaled) || "undefined", {code: "xl"});
     } catch(err) {
         message.channel.send("ERROR: " + err, {code: "xl"});
     };
