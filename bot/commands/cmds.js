@@ -1,7 +1,7 @@
 const discordjs = require("discord.js");
 const fs = require("fs");
 
-exports.help = function(client, message, args) {
+exports.run = function(client, message, args) {
     const commands = fs.readdirSync(__dirname);
     const embed = new discordjs.RichEmbed();
     
