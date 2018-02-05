@@ -13,11 +13,7 @@ exports.run = function(client, message, args) {
     try {
         let evaled = eval(args.join(" "));
 
-        if (typeof evaled !== "string") {
-            console.log(evaled);
-        };
-
-        message.channel.send(clean(evaled), {code: "xl"});
+        message.channel.send(clean(evaled).toString(), {code: "xl"});
     } catch(err) {
         message.channel.send("ERROR: ```" + err + "\n```", {code: "xl"});
     }
