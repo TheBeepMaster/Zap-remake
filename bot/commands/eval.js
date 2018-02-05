@@ -14,7 +14,7 @@ exports.run = function(client, message, args) {
         let evaled = eval(args.join(" "));
 
         if (typeof evaled !== "string") {
-            console.log(evaled.content);
+            console.log(evaled);
         };
 
         message.channel.send(clean(evaled), {code: "xl"});
