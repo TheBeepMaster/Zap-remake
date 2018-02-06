@@ -5,7 +5,7 @@ const client = new discordjs.Client({
 const settings = require("../settings.json");
 const fs = require("fs");
 const permissions = require("./util/permissions.js");
-const cleverbot = require("cleverbot");
+const cleverbot = require("cleverbot.io");
 const cleverClient = new cleverbot(process.env.CLEVER_BOT_USER, process.env.CLEVER_BOT_KEY);
 
 client.on("ready", () => {
