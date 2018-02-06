@@ -30,9 +30,8 @@ client.on("ready", () => {
 
 client.on("message", message => {
     if (message.author.bot) return;
-    if (!message.guild.available) return;
 
-    if (message.content.startsWith(process.env.PREFIX)) {
+    if (message.content.startsWith(process.env.PREFIX) && message.channel.type != "dm") {
         const splitted = message.content.split(" ");
         const command = splitted[0].toLowerCase().split("-")[1];
         let args = [];
