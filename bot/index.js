@@ -68,6 +68,12 @@ client.on("message", message => {
 
             message.channel.send(response);
         });
+    } else if (message.channel.type !== message.channel.type == "dm") {
+        cleverClient.ask(message.cleanContent, (err, response) => {
+            if (err) throw err;
+
+            message.channel.send(response);
+        });
     };
 });
 
