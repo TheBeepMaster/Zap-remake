@@ -5,6 +5,8 @@ const client = new discordjs.Client({
 const settings = require("../settings.json");
 const fs = require("fs");
 const permissions = require("./util/permissions.js");
+const cleverbot = require("cleverbot");
+const cleverClient = new cleverbot(process.env.CLEVER_BOT_USER, process.env.CLEVER_BOT_KEY);
 
 client.on("ready", () => {
     client.user.setPresence({
@@ -16,6 +18,14 @@ client.on("ready", () => {
     });
     
     console.log("Zap bot is now online.");
+
+    cleverClient.setNick(process.env.CLEVER_BOT_SESSION);
+
+    cleverClient.create((err, session) => {
+        if (err) throw err;
+        
+        console.log("Succesfully connected to cleverbot.io!");
+    });
 });
 
 client.on("message", message => {
@@ -52,14 +62,9 @@ client.on("message", message => {
         };
     } else if (message.content == ".") {
         return message.channel.send("com");
+    } else if (message.isMentioned(client.user)) {
+        cleverClient.ask(message.cleanContent);
     };
 });
 
 client.login(process.env.TOKEN);
-
-// Prevent the bot from sleeping.
-const http = require('http');
-
-setInterval(() => {
-    http.get("https://zap-remake.herokuapp.com/");
-}, 900000);
