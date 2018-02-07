@@ -23,10 +23,9 @@ function play(member, url, message, client) {
     
                 ytdl.getInfo(url, (err, info) => {
                     if (err) {
-                        message.reply("Unable to get the info of the song. Ending song...");
+                        message.reply("Unable to get the info of the song. The song's info will not be displayed.");
 
-                        console.log(err);
-                        return end(url, message, member, client);
+                        return console.log(err);
                     };
                     
                     playing[message.guild.id] = true;
