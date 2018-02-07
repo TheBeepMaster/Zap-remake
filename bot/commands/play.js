@@ -22,6 +22,13 @@ function play(member, url, message, client) {
                 });
     
                 ytdl.getInfo(url, (err, info) => {
+                    if (err) {
+                        message.reply("Unable to get the info of the song. Ending song...");
+
+                        console.log(err);
+                        return end(url, message, member, client);
+                    };
+                    
                     playing[message.guild.id] = true;
     
                     message.channel.send("Now playing: **" + info.title + "** ``[" + Math.round(info.length_seconds / 60) + ":" + Math.round(info.length_seconds % 60) + "]``");
@@ -128,13 +135,7 @@ exports.skip = function(message) {
 };
 
 exports.stop = function(client, message) {
-    const connection = client.voiceConnections.find("id", message.member.voiceChannel.id);
-    if (connection) {
-        const voiceChannel = connection.channel;
-        if (voiceChannel) {
-            voiceChannel.leave();
-        };
-    };
+    
 };
 
 exports.help = {
@@ -142,4 +143,4 @@ exports.help = {
     "usage": "<YouTube URL(s)>",
     "permission-level": 1,
     "catergory": "Music",
-}
+};
