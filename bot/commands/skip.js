@@ -2,7 +2,7 @@ const play = require("./play.js");
 
 exports.run = function(client, message, args) {
     if (message.member.voiceChannel) {
-        play.skip();
+        play.skip(client, message);
     } else {
         return message.reply("You need to be in a voice channel to stop playing music.");
     };
