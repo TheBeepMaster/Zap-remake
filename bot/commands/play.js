@@ -130,6 +130,8 @@ exports.run = function(client, message, args) {
 exports.skip = function(message) {
     if (dispatchers[message.guild.id]) {
         dispatchers[message.guild.id].end();
+    } else {
+        return message.reply("I cannot find the dispatcher. Make sure I'm playing music!");
     };
 };
 
