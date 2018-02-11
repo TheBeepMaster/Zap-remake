@@ -134,7 +134,14 @@ exports.skip = function(message) {
 };
 
 exports.stop = function(client, message) {
-    
+    if (message.member.voiceChannel) {
+        queue[message.guild.id] = [];
+        playing[message.guild.id] = false;
+
+        message.member.voiceChannel.leave().then(() => {
+            return message.reply("Stopped playing music and I left the voice channel.");
+        });
+    };
 };
 
 exports.help = {
