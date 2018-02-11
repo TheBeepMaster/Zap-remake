@@ -25,12 +25,12 @@ function play(member, url, message, client) {
                     if (err) {
                         message.reply("Unable to get the info of the song. The song's info will not be displayed.");
 
-                        return console.log(err);
+                        console.log(err);
+                    } else {        
+                        playing[message.guild.id] = true;
+
+                        message.channel.send("Now playing: **" + info.title + "** ``[" + Math.round(info.length_seconds / 60) + ":" + Math.round(info.length_seconds % 60) + "]``");
                     };
-                    
-                    playing[message.guild.id] = true;
-    
-                    message.channel.send("Now playing: **" + info.title + "** ``[" + Math.round(info.length_seconds / 60) + ":" + Math.round(info.length_seconds % 60) + "]``");
                 });
             });
         } else {
