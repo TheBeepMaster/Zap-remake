@@ -127,7 +127,7 @@ exports.run = function(client, message, args) {
     };
 };
 
-exports.skip = function(message) {
+exports.skip = function(client, message) {
     if (dispatchers[message.guild.id]) {
         dispatchers[message.guild.id].end();
     } else {
@@ -143,6 +143,8 @@ exports.stop = function(client, message) {
         message.member.voiceChannel.leave().then(() => {
             return message.reply("Stopped playing music and I left the voice channel.");
         });
+    } else {
+        return message.reply("Please join a voice channel, before trying to stop the music.");
     };
 };
 
