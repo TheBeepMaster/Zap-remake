@@ -35,7 +35,17 @@ client.on("ready", () => {
         ssl: true
     });
 
-    database_client.connect();
+    database_client.connect().then(() => {
+        console.log("Succesfully connected to the database!");
+    });
+
+    database_client.query("CREATE TABLE Zap", (err, response) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("Database created.");
+        };
+    });
 });
 
 client.on("message", message => {
