@@ -4,12 +4,9 @@ const client = new discordjs.Client({
 });
 const settings = require("../settings.json");
 const fs = require("fs");
-const { Client } = require("pg");
 const permissions = require("./util/permissions.js");
 const cleverbot = require("cleverbot.io");
 const cleverClient = new cleverbot(process.env.CLEVER_BOT_USER, process.env.CLEVER_BOT_KEY);
-
-let database_client;
 
 client.on("ready", () => {
     client.user.setPresence({
@@ -28,23 +25,6 @@ client.on("ready", () => {
         if (err) throw console.log(err);
         
         console.log("Succesfully connected to cleverbot.io!");
-    });
-
-    let database_client = new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: true
-    });
-
-    database_client.connect().then(() => {
-        console.log("Succesfully connected to the database!");
-    });
-
-    database_client.query("CREATE TABLE Zap", (err, response) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log("Database created.");
-        };
     });
 });
 
