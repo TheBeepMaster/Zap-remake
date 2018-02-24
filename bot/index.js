@@ -25,7 +25,7 @@ client.on("ready", () => {
     cleverClient.setNick(process.env.CLEVER_BOT_SESSION);
 
     cleverClient.create((err, session) => {
-        if (err) throw err;
+        if (err) throw console.log(err);
         
         console.log("Succesfully connected to cleverbot.io!");
     });
