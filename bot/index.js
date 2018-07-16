@@ -63,7 +63,7 @@ client.on("message", message => {
     } else if (message.content == ".") {
         return message.channel.send("com");
     } else if (message.isMentioned(client.user)) {
-        message.startTyping();
+        message.channel.startTyping();
         
         cleverClient.ask(message.cleanContent, (err, response) => {
             if (err) throw err;
