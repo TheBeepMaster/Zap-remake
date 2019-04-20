@@ -12,7 +12,7 @@ client.on("ready", () => {
     client.user.setPresence({
         status: "idle",
         game: {
-            name: "Naar Wesley",
+            name: "for commands",
             type: "WATCHING"
         }
     });
